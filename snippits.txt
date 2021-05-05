@@ -1,0 +1,54 @@
+// Desktop app github
+// https://github.com/ytmdesktop/ytmdesktop
+
+
+
+// Spotify ext for vscode
+// https://github.com/swdotcom/swdc-vscode-musictime/blob/708984b4d2ede6e617faf7aa1bb263da576c77f9/src/music/MusicCommandManager.ts#L137
+
+
+
+private static createButton(text: string, tooltip: string, command: string, priority: number) {
+    let statusBarItem = window.createStatusBarItem(StatusBarAlignment.Left, priority);
+    statusBarItem.text = text;
+    statusBarItem.command = command;
+    statusBarItem.tooltip = tooltip;
+
+    let button: Button = {
+      id: command,
+      statusBarItem,
+      tooltip: tooltip,
+    };
+
+    this._buttons.push(button);
+    return button;
+  }
+
+
+//https://stackoverflow.com/questions/7152644/windows-api-for-common-media-player-functions
+//They simply generate a virtual key code that DefWindowProc() recognizes. Copied straight from the WinUser.h header file:
+
+#if(_WIN32_WINNT >= 0x0500)
+#define VK_BROWSER_BACK        0xA6
+#define VK_BROWSER_FORWARD     0xA7
+#define VK_BROWSER_REFRESH     0xA8
+#define VK_BROWSER_STOP        0xA9
+#define VK_BROWSER_SEARCH      0xAA
+#define VK_BROWSER_FAVORITES   0xAB
+#define VK_BROWSER_HOME        0xAC
+
+#define VK_VOLUME_MUTE         0xAD
+#define VK_VOLUME_DOWN         0xAE
+#define VK_VOLUME_UP           0xAF
+#define VK_MEDIA_NEXT_TRACK    0xB0
+#define VK_MEDIA_PREV_TRACK    0xB1
+#define VK_MEDIA_STOP          0xB2
+#define VK_MEDIA_PLAY_PAUSE    0xB3
+#define VK_LAUNCH_MAIL         0xB4
+#define VK_LAUNCH_MEDIA_SELECT 0xB5
+#define VK_LAUNCH_APP1         0xB6
+#define VK_LAUNCH_APP2         0xB7
+
+#endif /* _WIN32_WINNT >= 0x0500 */
+
+//Since all windows call DefWindowProc(), you can simply use SendInput or keybd_event to send the keystroke.
